@@ -1,4 +1,5 @@
 #include "timer.h"
+#include "Arduino.h"
 
 Timer::Timer(time_t startDelay, time_t interval, task_t task, int repeats){
 	this->startDelay = startDelay;
@@ -11,12 +12,13 @@ Timer::Timer(time_t startDelay, time_t interval, task_t task, int repeats){
 Timer::~Timer(){}
 
 void Timer::stop(){
-	t->repeats = 0; 
+	repeats = 0; 
 }
 
 TimerManager::TimerManager(Timer * timers, int length){
 	this->timers = timers;
 	this->length = length;
+  this->startTime = millis();
 }
 
 TimerManager::~TimerManager(){}
